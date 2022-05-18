@@ -50,7 +50,9 @@ export const PhotoCard = ({ id, likes = 0, src = DEFAULT_IMAGE }) => {
 
   const setLocalStorage = value => {
     try {
-      window.localStorage.setItem(key, value)
+      value
+        ? window.localStorage.setItem(key, value)
+        : window.localStorage.removeItem(key, value)
       setLiked(value)
     } catch (e) {
       console.error(e)
