@@ -4,7 +4,7 @@ import { List, Item } from './styles'
 import { useFetch } from '../../hooks/useFetch'
 
 export const ListOfCategories = () => {
-  const { data } = useFetch()
+  const { data, isLoading } = useFetch()
 
   const [showFixed, setShowFixed] = useState(false)
 
@@ -19,11 +19,15 @@ export const ListOfCategories = () => {
 
   const renderList = fixed => {
     return (
-      <List className={fixed ? 'fixed' : ''}>
+      <List fixed={fixed}>
         {data.map((category) => <Item key={category.id}><Category {...category} /></Item>)}
       </List>
     )
   }
+  if (isLoading) {
+    return '...Cargando'
+  }
+
   return (
     <>
       {renderList()}
