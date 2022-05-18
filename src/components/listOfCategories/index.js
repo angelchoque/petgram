@@ -20,12 +20,13 @@ export const ListOfCategories = () => {
   const renderList = fixed => {
     return (
       <List fixed={fixed}>
-        {data.map((category) => <Item key={category.id}><Category {...category} /></Item>)}
+        {
+          isLoading
+            ? <Item key='loading'> <Category /> </Item>
+            : data.map((category) => <Item key={category.id}><Category {...category} /></Item>)
+        }
       </List>
     )
-  }
-  if (isLoading) {
-    return '...Cargando'
   }
 
   return (
