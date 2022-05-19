@@ -8,6 +8,7 @@ export const List = styled.ul`
   &::-webkit-scrollbar {
     display: none;
   }
+  margin-bottom: 20px;
   ${props => props.fixed && css`
     {
       background: #fff;
@@ -15,8 +16,8 @@ export const List = styled.ul`
       box-shadow: 0 0 20px rgba(0, 0, 0, .3);
       left: 0;
       margin: 0 auto;
-      max-width: 500px;
-      padding: 5px;
+      max-width: 550px;
+      padding: 15px;
       position: fixed;
       right: 0;
       top: -20px;
