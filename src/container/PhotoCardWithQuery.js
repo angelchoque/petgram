@@ -5,7 +5,6 @@ import { Loading } from '../components/loading'
 
 export const PhotoCardWithQuery = ({ id }) => {
   const { loading, error, data } = useGetPhotoWithQuery(id)
-
   if (loading) return <Loading />
   if (error) return <div>error</div>
 
