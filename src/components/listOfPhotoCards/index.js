@@ -23,7 +23,7 @@ export const ListOfPhotoCards = ({ categoryId }) => {
   return (
     <ul>
       {/* {data.photos.map(photo => <PhotoCard key={photo.id} {...photo} />)} */}
-      {data.photos.map(photo => <PhotoCard key={photo.id} id={photo.id} src={photo.src} />)}
+      {data.photos.map(photo => <PhotoCard key={photo.id} id={photo.id} src={photo.src} likes={photo.likes} />)}
     </ul>
   )
 }
