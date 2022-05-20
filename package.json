@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "npx webpack serve --static --open",
+    "dev": "npx webpack serve --static --open --history-api-fallback",
     "lint": "standard"
   },
   "repository": {
@@ -40,6 +40,7 @@
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "react-icons": "^4.3.1",
+    "react-router-dom": "^6.3.0",
     "styled-components": "^5.3.5"
   },
   "standard": {

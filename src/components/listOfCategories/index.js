@@ -23,7 +23,7 @@ export const ListOfCategories = () => {
         {
           isLoading
             ? <Item key='loading'> <Category /> </Item>
-            : data.map((category) => <Item key={category.id}><Category {...category} /></Item>)
+            : data.map((category) => <Item key={category.id}><Category {...category} path={`/pet/${category.id}`} /></Item>)
         }
       </List>
     )
