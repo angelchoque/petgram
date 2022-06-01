@@ -6,7 +6,7 @@ import { Link, useLocation } from 'react-router-dom'
 import { FaRegUserCircle } from 'react-icons/fa'
 
 import { Form, Input, Button, Title, Text } from './styles'
-export const UserForm = ({ aproveAuth, title }) => {
+export const UserForm = ({ onSubmit, title }) => {
   const form = useRef(null)
   let location = useLocation()
 
@@ -14,7 +14,7 @@ export const UserForm = ({ aproveAuth, title }) => {
     const formData = new FormData(form.current)
     const formEntries = Object.fromEntries(formData)
     console.log(formEntries)
-    aproveAuth()
+    onSubmit({ ...formEntries })
     e.preventDefault()
   }
 
@@ -27,10 +27,10 @@ export const UserForm = ({ aproveAuth, title }) => {
   return (
     <>
       <Title><FaRegUserCircle /></Title>
-      <Form ref={form}>
+      <Form ref={form} onSubmit={handleSubmit}>
         <Input type='text' name='email' placeholder='Email' />
         <Input type='password' name='password' placeholder='Password' />
-        <Button onClick={handleSubmit} type='submit'>{title}</Button>
+        <Button type='submit'>{title}</Button>
         <ButtonText />
       </Form>
     </>
