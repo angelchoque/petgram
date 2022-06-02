@@ -6,15 +6,17 @@ import { Link, useLocation } from 'react-router-dom'
 import { FaRegUserCircle } from 'react-icons/fa'
 
 import { Form, Input, Button, Title, Text } from './styles'
-export const UserForm = ({ onSubmit, title }) => {
+
+export const UserForm = ({ mutation, onSubmitForm, title, loading, error }) => {
   const form = useRef(null)
   let location = useLocation()
 
   const handleSubmit = (e) => {
     const formData = new FormData(form.current)
     const formEntries = Object.fromEntries(formData)
-    console.log(formEntries)
-    onSubmit({ ...formEntries })
+    mutation({ variables: { input: { ...formEntries } } }).then(res => {
+      res.data.signup ? onSubmitForm(res.data.signup) : onSubmitForm(res.data.login)
+    })
     e.preventDefault()
   }
 
@@ -26,13 +28,14 @@ export const UserForm = ({ onSubmit, title }) => {
 
   return (
     <>
-      <Title><FaRegUserCircle /></Title>
-      <Form ref={form} onSubmit={handleSubmit}>
-        <Input type='text' name='email' placeholder='Email' />
-        <Input type='password' name='password' placeholder='Password' />
-        <Button type='submit'>{title}</Button>
+      <Title><FaRegUserCircle size='32px' /></Title>
+      <Form disabled={loading} ref={form} onSubmit={handleSubmit}>
+        <Input disabled={loading} type='text' name='email' placeholder='Email' />
+        <Input disabled={loading} type='password' name='password' placeholder='Password' />
+        <Button disabled={loading} type='submit'>{title}</Button>
         <ButtonText />
       </Form>
+      {error && 'error'}
     </>
   )
 }

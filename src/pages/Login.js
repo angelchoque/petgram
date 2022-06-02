@@ -1,19 +1,19 @@
 import React, { useContext } from 'react'
 import { UserForm } from '../components/userForm'
-import { useRegisterMutation } from '../container/RegisterMutation'
+import { useLoginMutation } from '../container/LoginMutation'
 import { AppContext } from '../context/AppContext'
 
-export const NotRegisterUser = () => {
+export const Login = () => {
+  const { mutation, mutationLoading, mutationError } = useLoginMutation()
   const { activateAuth } = useContext(AppContext)
-  const { mutation, mutationLoading, mutationError } = useRegisterMutation()
   return (
     <>
       <UserForm
+        title='Sign In'
         mutation={mutation}
-        onSubmitForm={activateAuth}
-        loading={mutationLoading}
         error={mutationError}
-        title='Registrarse'
+        loading={mutationLoading}
+        onSubmitForm={activateAuth}
       />
     </>
   )

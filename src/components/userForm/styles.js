@@ -21,6 +21,11 @@ export const Button = styled.button`
   display: block;
   width: 100%;
   text-align: center;
+  cursor: pointer;
+  &[disabled]{
+    opacity: .3;
+    cursor: no-drop;
+  }
 `
 
 export const Title = styled.h2`

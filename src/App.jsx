@@ -11,6 +11,7 @@ import { Favs } from './pages/Favs'
 import { User } from './pages/User'
 import { NotRegisterUser } from './pages/NotRegisterUser'
 import { AppContext } from './context/AppContext'
+import { Login } from './pages/Login'
 
 const App = () => {
   // const [isLogged, setIsLogged] = useState(false)
@@ -30,6 +31,8 @@ const App = () => {
           {/* <Route path='/detail/:detailId' element={<Detail />} /> */}
           <Route path='/favs' element={isAuth ? <Favs /> : <NotRegisterUser />} />
           <Route path='/user' element={isAuth ? <User /> : <NotRegisterUser />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/register' element={<NotRegisterUser />} />
         </Routes>
         <NavBar />
       </BrowserRouter>
