@@ -26,31 +26,22 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
       console.log(`[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`)
     )
   }
-  if (networkError) console.log(`[Network error]: ${networkError}`)
+  // if (networkError) console.log(`[Network error]: ${networkError}`)
+  if (networkError && networkError.result.code === 'invalid_token') {
+    window.sessionStorage.removeItem('token')
+    window.location.href = '/'
+  }
 })
 
 const client = new ApolloClient({
   link: errorLink.concat(authLink.concat(httpLink)),
   cache: new InMemoryCache()
-  // onError: onError(
-  //   ({ networkError }) => {
-  //     if (networkError && networkError.result.code === 'invalid_token') {
-  //       window.sessionStorage.removeItem('token')
-  //       window.location.href = '/'
-  //     }
-  //   }
-  // )
 })
-
-// const client = new ApolloClient({
-//   uri: 'http://127.0.0.1:4000/graphql',
-//   cache: new InMemoryCache()
-// })
 
 const container = document.querySelector('#root')
 const root = createRoot(container)
 
-root.render(<AppProvider><ApolloProvider client={client}> <App /> </ApolloProvider></AppProvider>)
+root.render(<ApolloProvider client={client}><AppProvider><App /></AppProvider></ApolloProvider>)
 
 // https://www.apollographql.com/docs/react/networking/authentication/
 // https://www.apollographql.com/docs/react/networking/advanced-http-networking/#customizing-request-logic
